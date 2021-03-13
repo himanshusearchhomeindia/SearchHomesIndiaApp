@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os #we will use this for media and static folder in the app
 from pathlib import Path
-from urllib.parse import urlparse
-from django.core.management.utils import get_random_secret_key #This will generate the secret key automatically.
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,12 +26,12 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')#integrating static folder
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = '*svhxkru#4ck*jn$1*3rkxlm@f0b3qn!t)+^4epx+$oz#=%pad'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") #This will check the allowed hosts.
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -84,18 +82,16 @@ WSGI_APPLICATION = 'SHIProj.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 #This is the database info where we are using the postgresql database.
-if os.getenv("DATABASE_URL", "") != "":
-    r = urlparse(os.environ.get("DATABASE_URL"))
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.path.relpath(r.path, '/'),  #database name
-            'USER': r.username,  #username
-            'PASSWORD': r.password,  #password
-            'HOST': r.hostname,  #hostname
-            'PORT': r.port, #portname
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'SHIdb',  #database name
+        'USER': 'postgres',  #username
+        'PASSWORD': 'postgresql',  #password
+        'HOST': 'localhost',  #hostname
+        'PORT': '5432', #portname
     }
+}
 
 
 # Password validation
@@ -136,7 +132,6 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 
