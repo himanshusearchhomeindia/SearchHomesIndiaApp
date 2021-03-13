@@ -1,0 +1,232 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{%block body_block%}
+{% csrf_token %}
+
+
+<!-- PAGE TITLE -->
+<div class="page-title page-main-section parallaxie" style="background-image: url(../static/images/homepagebanner.gif);">
+  <div class="container padding-bottom-top-120 text-uppercase text-center">
+    <div class="main-title">
+      <h1>My Listing</h1>
+      <h5>10 Years Of Experience!</h5>
+      <div class="line_4"></div>
+      <div class="line_5"></div>
+      <div class="line_6"></div>
+      <a href="/">home</a><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+      <!-- <a href="my-properties.html">My Prperties</a> -->
+    </div>
+  </div>
+</div>
+<!--PAGE TITLE -->
+
+<!-- LISTING STYLE - 2 -->
+<section class="property-query-area property-page-bg padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 bottom40">
+        <h2 class="text-uppercase">Advanced <span>Search</span></h2>
+        <div class="line_1"></div>
+        <div class="line_2"></div>
+        <div class="line_3"></div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Advanced search section starts from here -->
+      <form class="findus clearfix" id="SearchForm" action="/propertylist/" method="get">
+        <div class="row">
+          <div class="col-md-3 col-sm-3">
+            <div class="single-query">
+              <select class="selectpicker" id="BuilderQuery" name="BuilderQuery" data-live-search="true">
+                <option class="active">Select Builder</option>
+                <option>Prestige Group</option>
+                <option>Brigade Group</option>
+                <option>Sobha Limited</option>
+                <option>Cornerstone Properties</option>
+                <option>Ozone Group</option>
+                <option>Vaswani Group</option>
+                <option>Advaitha Ventures</option>
+                <option>GK Shelters</option>
+                <option>Ozone Group</option>
+                <option>MJR Builders</option>
+                <option>MSR Developers</option>
+                <option>Godrej Properties</option>
+                <option>SR Builders</option>
+                <option>Provident Group</option>
+                <option>Ecolife Developers</option>
+                <option>Arvind Smartspace</option>
+                <option>Assetz Property Group</option>
+                <option>Goyal co.</option>
+                <option>Birla Estate</option>
+                <option>Candeur Constructions</option>
+                <option>Concorde Group</option>
+                <option>Embassy Group</option>
+                <option>Kolte Patil</option>
+                <option>Rohan Builders</option>
+                <option>Incor Group</option>
+                <option>Habitat Ventures</option>
+                <option>Sai Purvi Developers</option>
+                <option>TATA Reality And Infrastructure Ltd</option>
+                <option>UNICCA Builders And Developers</option>
+                <option>Subha Builders & Developers</option>
+                <option>Shriram Properties</option>
+                <option>Total Environment</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-3">
+            <div class="single-query">
+              <!-- In this input tag the user will type the query (only property name) -->
+              <input type="text" class="keyword-input" id="query" name="query"
+                placeholder="Please Enter Name Of  Apartment, Villa, plot, Row-houses"
+                onkeypress="return /[a-z A-Z]/i.test(event.key)">
+              <!-- used this code to prevent the number's and symbols to get inputed by the user by using onkeypress and regex expression onkeypress="return /[a-z A-Z]/i.test(event.key)" -->
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <div class="single-query">
+              <select class="selectpicker" id="LocationQuery" name="LocationQuery" data-live-search="true">
+                <option class="active">Select Location</option>
+                <option>Bangalore</option>
+                <option>Mumbai </option>
+                <option>Delhi</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-3">
+            <div class="single-query">
+              <select class="selectpicker" id="PropertyTypeQuery" name="PropertyTypeQuery" data-live-search="true">
+                <option class="active">Select Property Type</option>
+                <option>Residential</option>
+                <option>Commercial</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <div class="single-query">
+              <select class="selectpicker" id="SubPropertyTypeQuery" name="SubPropertyTypeQuery"
+                data-live-search="true">
+                <option class="active">Select Sub Property Type</option>
+                <option>Plot</option>
+                <option>Villa</option>
+                <option>Apartment</option>
+                <option>Rowhouse</option>
+                <option>Farmhouse</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <div class="single-query">
+              <select class="selectpicker" id="PropertyStatusQuery" name="PropertyStatusQuery" data-live-search="true">
+                <option class="active">Select Property Status</option>
+                <option>Ongoing</option>
+                <option>Completed</option>
+                <option>Ready to Move</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <label class="form-label" for="range">Price Range:</label>
+            <input type="hidden" name="PriceRange" id="PriceRange" value="">
+            <span> 0 Lakh</span>
+            <span id="op"> 0 </span>
+            <span>Cr</span>
+            <div class="range">
+              <input type="range" class="form-range" id="Range" min="0" max="100" value="0">
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-12 text-right">
+            <div class="query-submit-button form-group">
+              <button type="submit" class="btn_fill" style="color: gray;">Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- Advanced search ends here -->
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <div class="group-button-search"><a data-toggle="collapse" href=".search-propertie-filters" class="more-filter"><i class="fa fa-plus text-1" aria-hidden="true"></i><i class="fa fa-minus text-2 hide" aria-hidden="true"></i>
+          <div class="text-1">Show more options</div>
+          <div class="text-2 hide">Show less options</div>
+          </a></div>
+      </div>
+    </div> -->
+    <!-- <div class="search-propertie-filters collapse">
+      <div class="container-2">
+        <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Wifi</span></div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Park</span></div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Schools</span></div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Grounds</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Masque</span></div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Hospitals</span></div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Transport</span></div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <div class="search-form-group white">
+              <div class="check-box"><i><input name="check-box" type="checkbox"></i></div>
+              <span>Security</span></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+<!--LISTING STYLE- 2 -->
+
+<!--- My Property Start -->
+<!-- Scrollhere id is used to scroll down the page till the PropertyContainer section so user can see the results -->
+<section class="my_pro padding bg-color-gray" id="Scrollhere">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+       <em> <h2 class="text-uppercase">My <span class="color_red" style="color: gray;"> Properties</span></h2></em>
+        <div class="line_1"></div>
+        <div class="line_2"></div>
+        <div class="line_3"></div>
+      </div>
+    </div>
+
+    <!-- The results of the general search will shown inside this container -->
+    <div class="row" id="PropertyContainer">
+      <!-- inside this container all the filtered properties will get shown by using (index.js) file that file will make an API call to server with url(properties/) and get the data from server -->
+    </div>
+
+  </div>
+</section>
+<!-- My - Property end -->
+<!-- custom script for making an API request using for General Search. -->
+<script src={% static "js/GeneralSearchindex.js" %}></script>
+<script src={% static "js/AdvanceSearch.js" %}></script>
+{% endblock %}

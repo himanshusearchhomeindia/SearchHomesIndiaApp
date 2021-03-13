@@ -1,0 +1,250 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{%block body_block%}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<!--===== PAGE TITLE =====-->
+<div class="page-title page-main-section parallaxie" style="background-image: url(../static/images/citylarge.gif);">
+  <div class="container padding-bottom-top-120 text-uppercase text-center">
+    <div class="main-title">
+      <h1>Compare Your Properties At</h1>
+      <h5>SearchHomesIndia</h5>
+      <div class="line_4"></div>
+      <div class="line_5"></div>
+      <div class="line_6"></div>
+      <a href="/">home</a><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+      <!--<a href="about.html">about us</a>-->
+    </div>
+
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--===== #/PAGE TITLE =====-->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="col-md-10 search_2 search_2_set">
+      <!-- <form class="findus clearfix" id="SearchForm" action="#"> -->
+      <div class="row">
+
+        <div class="col-md-4 col-sm-3">
+          <div class="single-query">
+
+            <input type="text" class="keyword-input" id="text1" name="query"
+              placeholder="Apartment , Villa , plot , Row-houses" list="properties">
+
+            <datalist id="properties">
+              {% for details in property_details %}
+              <option value="{{details.PropertyName}}"></option>
+              {% endfor %}
+            </datalist>
+
+            <div class="query-submit-button form-group">
+              <br>
+              <button id="button1" type="submit" class="btn_fill">Get Details</button>
+            </div>
+
+            <div>
+              <div role="tabpanel" class="tab-pane" id="summary">
+                <div class="row property-d-table">
+                  <div class="col-md-12 col-sm-6 col-xs-12">
+                    <table class="table table-striped table-responsive">
+                      <tbody id="ajaxdetails1">
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-3">
+          <div class="single-query">
+            <input type="text" class="keyword-input" id="text2" name="query"
+              placeholder="Apartment , Villa , plot , Row-houses" list="properties">
+
+            <datalist id="properties">
+              {% for details in property_details %}
+              <option value="{{details.PropertyName}}"></option>
+              {% endfor %}
+            </datalist>
+
+            <div class="query-submit-button form-group">
+              <br>
+              <button id="button2" type="submit" class="btn_fill">Get Details</button>
+            </div>
+
+
+            <div>
+              <div role="tabpanel" class="tab-pane" id="summary">
+                <div class="row property-d-table">
+                  <div class="col-md-12 col-sm-6 col-xs-12">
+                    <table class="table table-striped table-responsive">
+                      <tbody id="ajaxdetails2">
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-3">
+          <div class="single-query">
+            <input type="text" class="keyword-input" id="text3" name="query"
+              placeholder="Apartment , Villa , plot , Row-houses" list="properties">
+            <datalist id="properties">
+              {% for details in property_details %}
+              <option value="{{details.PropertyName}}"></option>
+              {% endfor %}
+            </datalist>
+            <div class="query-submit-button form-group">
+              <br>
+              <button id="button3" type="submit" class="btn_fill">Get Details</button>
+            </div>
+
+            <div>
+              <div role="tabpanel" class="tab-pane" id="summary">
+                <div class="row property-d-table">
+                  <div class="col-md-12 col-sm-6 col-xs-12">
+                    <table class="table table-striped table-responsive">
+                      <tbody id="ajaxdetails3">
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
+  <!-- </div>
+    
+      </div> -->
+</div>
+<!-- #/BANNER -->
+
+
+
+<!-- This is for calling of the Ajax call and doing of Compare from the backend  and fetching of the data and sending into frontend. -->
+<script>
+
+  let html; //this variable is an empty html for appending the details.
+  $(document).ready(function () {
+
+    let val1;  //this variable is of storing of the input value 
+    let container; //this container variable is of output div value 
+
+    $('button').click(function (e) {
+      //  e.preventDefault();
+      // alert(this.id);
+
+      if (this.id == 'button1') {  // comparison of the  button1 with the clicked id.
+        val1 = $('#text1').val();  //this is to get the text1 value  
+        container = document.getElementById('ajaxdetails1'); //this is to get the ajaxdetails1 id and store in container
+        // alert(val1)
+      }
+
+      else if (this.id == 'button2') {  // comparison of the  button2 with the clicked id.
+        val1 = $('#text2').val();  //this is to get the text2 value 
+        container = document.getElementById('ajaxdetails2'); //this is to get the ajaxdetails2 id and store in container
+        // alert(val1)
+      }
+
+      else if (this.id == 'button3') {  // comparison of the  button3 with the clicked id.
+        val1 = $('#text3').val();   //this is to get the text3 value 
+        container = document.getElementById('ajaxdetails3'); //this is to get the ajaxdetails3 id and store in container
+        // alert(val1)
+      };
+
+
+      $.ajax({
+        url: '/compare_property/',  //this is to send the compare_property url in backend 
+        data: { val1: val1 },   //by sending the val1 to it
+        dataType: 'json',   //datatype will be of json type 
+        success: function (data) {    // success function 
+          if (data != 0) {          //comparison for data not equal to 0
+            $.each(data, function (key, value) {
+              // appending the retreive value in the html attribute  
+              html = `    
+                           <tr>  
+                            <span style="text-align:center;"><a href="/${value.slug}/${value.Location}"><img src="${value.Property_Image}"  alt="No Image Found" height="200" width="200"></img></a></span>
+                           </tr>
+                           <tr>
+                             <td><b>Property Name</b></td>
+                             <td class="text-right"><span style="color:red;"><b>${value.PropertyName}</b></span></td>
+                           </tr>
+                           <tr>
+                             <td><b>Location</b></td>
+                             <td class="text-right">${value.Location}</td>
+                           </tr>
+                           <tr>
+                             <td><b>Project Area</b></td>
+                             <td class="text-right">${value.Project_Area}</td>
+                           </tr>
+                           <td><b>Status</b></td>
+                           <td class="text-right">${value.PropertyStatus}</td>
+                           </tr>
+                           <tr>
+                             <td><b>Base Price</b></td>
+                             <td class="text-right">${value.Property_Price}</td>
+                           </tr>
+                           <tr>
+                             <td><b>BHK</b></td>
+                             <td class="text-right">${value.BHK}</td>
+                           </tr>
+                           <tr>
+                             <td><b>Per sq ft</b></td>
+                             <td class="text-right">${value.PerSqftPrice}</td>
+                           </tr>`;
+            });
+
+            container.innerHTML = html;    //sending to the container 
+          }
+          else {
+            //else for the wrong input. 
+            html = `<h4 style="color:red"> Please Enter the Valid Property Name</h4>`;
+            container.innerHTML = html;  //appending the html to container 
+          }
+
+        },
+        //else for the failure of the result 
+        error: function (errorThrown) {
+
+        }
+      });
+
+    });
+
+  });
+
+</script>
+
+
+
+
+
+{% endblock %}

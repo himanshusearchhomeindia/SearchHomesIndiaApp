@@ -1,0 +1,230 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{%block body_block%}
+
+
+<!--===== PAGE TITLE =====-->
+<div class="page-title page-main-section parallaxie" style="background-image: url(/static/images/carrier.jpg);">
+  <div class="container padding-bottom-top-120 text-uppercase text-center">
+    <div class="main-title">
+      <h1>Careers</h1>
+      <h5>10 Years Of Experience!</h5>
+      <div class="line_4"></div>
+      <div class="line_5"></div>
+      <div class="line_6"></div>
+      <a href="index.html">home</a><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+      <!--<a href="carriers.html">Carriers</a> -->
+    </div>
+  </div>
+</div>
+<!--===== #/PAGE TITLE =====-->
+
+
+<!--===== CONTACT US =====-->
+<section id="contact-us" class="padding_top parallaxie" style="background-image:url(/static/images/map-bg.png); ">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="contact-bg">
+
+          <div class="row">
+
+            <div class="col-md-8 col-sm-7 col-xs-12">
+
+              <div class="bottom40">
+                <h2 class="text-uppercase">Send us<span> a message </span></h2>
+                <div class="line_1"></div>
+                <div class="line_2"></div>
+                <div class="line_3"></div>
+              </div>
+
+              <form class="contact-form" id="Contactform">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group single-query">
+                      <input type="text" id="name" name="name" class="keyword-input form-control"
+                        placeholder="Your Name" required>
+                    </div>
+                    <!-- Name valid or invalid checker div's -->
+                    <div class="valid-feedback" id="namevalid">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback" id="nameinvalid">
+                      Please Enter a valid Name.
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group single-query"">
+                                                  <input type=" email" id="email" name="email" class="keyword-input"
+                      value="@gmail.com" placeholder="Your E-mail" required>
+                    </div>
+                    <!-- Email validation alert boxes. -->
+                    <div class="valid-feedback" id="emailvalid">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback" id="emailinvalid">
+                      Please Enter a valid Email-Address.
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <select class="selectpicker" data-live-search="true" id="vacancy" required>
+                      <option value="-1"></option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="Sales">Sales</option>
+                      <option value="IT/Information Technology">IT/Information Technology</option>
+                    </select>
+                  </div>
+                  <div class="valid-feedback" id="vacancyvalid">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback" id="vacancyinvalid">
+                    Please choose right options.
+                  </div>
+                  <br>
+
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group single-query" style="margin-left: -493px;margin-top: 50px;">
+                      <input type="number" id="phone" name="Number" class="keyword-input"
+                        placeholder="Your Phone Number" maxlength="10" required>
+                    </div>
+                    <!-- Contact valid or invalid checker div's -->
+                    <div class="valid-feedback" id="phonevalid" style="display: block;
+                              width: 100%;
+                              margin-left: -493px;">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback" id="phoneinvalid" style="display: block;
+                              width: 100%;
+                              margin-left: -493px;">
+                      Please Enter a valid Contact Number.
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group single-query"">
+                                                  <textarea name=" message" placeholder="Message" id="message"
+                      required>
+                      </textarea>
+                    </div>
+                  </div>
+                  <!-- Message valid or invalid checker div's -->
+                  <div class="valid-feedback" id="messagevalid">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback" id="messageinvalid">
+                    Please Enter a valid Message.
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- Alert blocks to show the alerts regarding the submission of the form -->
+                  <!-- success alert block -->
+                  <div class="alert alert-success alert-dismissible" role="alert" id="success">
+                    <strong>ThankYou for your response!</strong> Our team will get back to you soon.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <!-- failure alert block -->
+                  <div class="alert alert-danger alert-dismissible" role="alert" id="failure">
+                    <strong>Something went wrong!</strong> Please fill the details properly.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <div class="col-md-12 top20">
+                    <div class="form-group single-query">
+                                                  <button type=" submit" class="btn_fill" id="submit"
+                      name="btn_submit">
+                      Submit</button>
+                      <a href="/carriers/">
+                        <img src="{% static 'images/weare.png' %}" style="width: 100px;margin-top: -77px;"  class="my-floatHiring" data-src="https://mk0homznspaceco9ygoq.kinstacdn.com/wp-content/uploads/2019/06/Were-Hiring-Button-HNS-B.png" loading="lazy"></a>
+                    </div>
+                  </div>
+                  
+                </div>
+
+              </form>
+            </div>
+
+            <div class="col-md-4 col-sm-5 col-xs-12">
+
+              <div class="address_box">
+                <div class="bottom40">
+                  <h2 class="text-uppercase">get in<span> touch</span></h2>
+                  <div class="line_1"></div>
+                  <div class="line_2"></div>
+                  <div class="line_3"></div>
+                </div>
+
+                <div class="agent-p-contact p-t-30">
+                  <div class="agetn-contact-2">
+                    <p><i class="icon-telephone114"></i>+91 - 90366 11811 </p>
+                    <a href="#.">
+                      <p><i class=" icon-icons142"></i> info@searchhomesindia</p>
+                    </a>
+                    <a href="#.">
+                      <p><i class="icon-browser2"></i>www.searchhomeindia.com</p>
+                    </a>
+                    <p><i class="icon-icons74"></i>No.287, ‘Gaurav Villa’, 15th Cross, 5th Main Rd, 6th Sector, HSR
+                      Layout, Bengaluru, Karnataka 560102</p>
+                  </div>
+                  <ul class="socials">
+                    <li><a href="#."><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#."><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#."><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#."><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#."><i class="fa fa-pinterest"></i></a></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row padding_top">
+            <div class="col-md-12">
+
+              <div class="bottom40">
+                <h2 class="text-uppercase">Our <span> Location </span></h2>
+                <div class="line_1"></div>
+                <div class="line_2"></div>
+                <div class="line_3"></div>
+              </div>
+
+                <section class="section-row">
+                <div class="panel-box">
+                <div class="panel-header">
+                <h3 class="panel-title">Location Map</h3>
+                </div>
+                <div class="panel-body">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124422.8814709986!2d77.61919986016379!3d12.958086889616734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdb6f27f1569c80ba!2sSearch+Homes+India+Pvt+Ltd!5e0!3m2!1sen!2sin!4v1562777021811!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+                </div>
+                </section>
+                </div>
+                </div>
+                </section>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!--===== #/CONTACT US =====-->
+
+<script src={% static "js/ResumeCheck.js" %}></script>
+
+{% endblock %}

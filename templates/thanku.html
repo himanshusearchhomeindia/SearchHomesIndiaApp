@@ -1,0 +1,25 @@
+{%extends "base(Home).html"%}
+{% load static %}
+{%block body_block%}
+<style>
+
+	.slick-slide img{
+		width: 80%;
+	}
+</style>
+<!-- ====== BANNER ====== -->
+<section id="page-builder" class="page-section">
+	<!-- HERO IMAGE WITH SEARCH FORM -->
+	<div class="row tpb-row" id="slider-img"
+		style="background-image: url(/static/images/1.png); padding-top: 50px;margin: 0; background-size: cover; background-position: center;">
+		<div class="col-md-1"></div>
+		<div class="tpb tpb-property_simple_search col-md-10 col-xs-12 search-box">
+
+            <center><h1> Thank You!</h1></center>
+            <h2>Thank you for contacting us.</h2>
+		
+		</div>		
+	</div>
+</section>
+
+{% endblock %}
