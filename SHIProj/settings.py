@@ -135,10 +135,9 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR,  "static"),
 # ]
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "/SHIProj/static")
 # STATICFILES_DIRS = [STATIC_DIR, ]
 
 
 # GOOGLE_RECAPTCHA_SECRET_KEY = '6LfuBLIUAAAAACBB_qClgqkR3RVjTmvWusQ8yNpJ'
-
 
